@@ -13,18 +13,18 @@ struct function;
 template<typename R, typename... Args>
 struct function<R (Args...)>
 {
-  function() noexcept = default; // empty type descriptor
+  function() noexcept = default;
 
-  function(function const& other) = default; // copy
-  function(function&& other) noexcept = default; // move
+  function(function const& other) = default;
+  function(function&& other) noexcept = default;
 
   template<typename T>
-  function(T val); ///
+  function(T val);
 
-  function & operator=(function const& rhs) = default; // != this, destroy, copy
-  function & operator=(function&& rhs) noexcept = default; // != this, destroy, move
+  function & operator=(function const& rhs) = default;
+  function & operator=(function&& rhs) noexcept = default;
 
-  ~function() = default; // destroy
+  ~function() = default;
 
   explicit operator bool() const noexcept;
 

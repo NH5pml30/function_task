@@ -22,7 +22,7 @@ constexpr static bool fits_small_storage =
   std::is_nothrow_move_constructible_v<T>;
 
 template<typename R, typename... Args>
-struct type_descriptor; /// Move, copy, invoke, destroy
+struct type_descriptor; // Move, Copy, Invoke, Destroy
 
 template<typename R, typename... Args>
 const type_descriptor<R, Args...> * empty_type_descriptor();
