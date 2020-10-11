@@ -15,7 +15,7 @@ struct type_descriptor
 };
 
 template<typename R, typename... Args>
-const type_descriptor<R, Args...> * empty_type_descriptor()
+const type_descriptor<R, Args...> * empty_type_descriptor() noexcept
 {
   using storage_t = storage<R, Args...>;
 
@@ -51,7 +51,7 @@ struct function_traits_impl
   template<typename R, typename... Args>
   static void initialize_storage(storage<R, Args...> &src, T &&obj)
   {
-    src.set_dynamic<T>(new T(std::move(obj)));
+    src.template set_dynamic<T>(new T(std::move(obj)));
   }
 
   template<typename R, typename... Args>
@@ -156,8 +156,5 @@ struct function_traits_impl<T, true>
     return &impl;
   }
 };
-
-template<typename T>
-using function_traits = function_traits_impl<T, fits_small_storage<T>>;
 
 #endif /* TYPE_DESCRIPTOR_H_ */

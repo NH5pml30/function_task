@@ -2,7 +2,6 @@
 #define FUNCTION_H_
 
 #include <exception>
-#include <type_traits>
 
 #include "storage.h"
 #include "type_descriptor.h"
@@ -62,14 +61,14 @@ template<typename R, typename... Args>
 template<typename T>
 T * function<R (Args...)>::target() noexcept
 {
-  return stg.check_type<T>() && operator bool() ? function_traits<T>::get_target(&stg) : nullptr;
+  return stg.template check_type<T>() && operator bool() ? function_traits<T>::get_target(&stg) : nullptr;
 }
 
 template<typename R, typename... Args>
 template<typename T>
 const T * function<R (Args...)>::target() const noexcept
 {
-  return stg.check_type<T>() && operator bool() ? function_traits<T>::get_target(&stg) : nullptr;
+  return stg.template check_type<T>() && operator bool() ? function_traits<T>::get_target(&stg) : nullptr;
 }
 
 #endif /* FUNCTION_H_ */
