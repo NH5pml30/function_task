@@ -61,14 +61,14 @@ template<typename R, typename... Args>
 template<typename T>
 T * function<R (Args...)>::target() noexcept
 {
-  return stg.template check_type<T>() && operator bool() ? function_traits<T>::get_target(&stg) : nullptr;
+  return stg.template check_type<T>() ? function_traits<T>::get_target(&stg) : nullptr;
 }
 
 template<typename R, typename... Args>
 template<typename T>
 const T * function<R (Args...)>::target() const noexcept
 {
-  return stg.template check_type<T>() && operator bool() ? function_traits<T>::get_target(&stg) : nullptr;
+  return stg.template check_type<T>() ? function_traits<T>::get_target(&stg) : nullptr;
 }
 
 #endif /* FUNCTION_H_ */
